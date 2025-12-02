@@ -520,42 +520,7 @@ export default function Page() {
               Manage your core resumes and add more versions for different roles.
             </p>
           </div>
-
-          <Dialog
-            open={!!editingResume && editingResume.id === 0}
-            onOpenChange={(open) => {
-              if (!open) setEditingResume(null);
-            }}
-          >
-            <DialogTrigger asChild>
-              <Button
-                size="sm"
-                className="rounded-lg bg-sky-600 hover:bg-sky-500 flex items-center gap-2"
-                onClick={() =>
-                  setEditingResume({
-                    id: 0,
-                    title: "",
-                    type: "",
-                    url: "",
-                  })
-                }
-              >
-                Add more
-              </Button>
-            </DialogTrigger>
-            <DialogContent className="bg-slate-950 border-slate-800">
-              <DialogHeader>
-                <DialogTitle>Add New Resume</DialogTitle>
-              </DialogHeader>
-              {editingResume && editingResume.id === 0 && (
-                <ResumeForm
-                  resume={editingResume}
-                  onSave={handleResumeSave}
-                  onCancel={() => setEditingResume(null)}
-                />
-              )}
-            </DialogContent>
-          </Dialog>
+          {/* Right side is now empty – that's fine */}
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">
@@ -646,6 +611,7 @@ export default function Page() {
               Explore work across Data Science, AI & LLMs, Machine Learning and Data Analytics.
             </p>
           </div>
+          {/* Upload removed */}
         </div>
 
         <Tabs defaultValue="data-science" className="space-y-4">
@@ -705,28 +671,11 @@ export default function Page() {
              Upload and manage your certifications with a professional layout.
            </p>
           </div>
+          {/* Add button removed */}
+        </div>
 
-          {/* This label wraps both the hidden input and the button.
-              Clicking the button should open the file dialog. */}
-          <label className="inline-flex items-center gap-2 cursor-pointer">
-            <input
-              type="file"
-              multiple
-              className="hidden"
-              onChange={(e) => handleCertificateUpload(e.target.files)}
-          />
-          <Button
-            size="sm"
-            className="rounded-md border-slate-600 bg-slate-900 text-slate-100 hover:bg-slate-800 flex items-center gap-2"
-          >
-            <Upload className="h-4 w-4" />
-            Add
-          </Button>
-        </label>
-      </div>
-
-      <div className="grid gap-4 md:grid-cols-2">
-        {certificates.length === 0 && (
+        <div className="grid gap-4 md:grid-cols-2">
+          {certificates.length === 0 && (
           <Card className="bg-slate-900/70 border-slate-800">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-base">
@@ -1035,24 +984,8 @@ function ProjectsTab({
           <h3 className="text-lg font-medium text-slate-50">{title}</h3>
           <p className="text-xs text-slate-400 mt-1">{description}</p>
         </div>
-
-        <label className="inline-flex items-center gap-2 cursor-pointer">
-          <input
-            type="file"
-            multiple
-            className="hidden"
-            onChange={(e) => onUpload(categoryKey, e.target.files)}
-          />
-          <Button
-            size="sm"
-            variant="outline"
-            className="rounded-lg border-slate-600 bg-slate-900 text-slate-100 hover:bg-slate-800 flex items-center gap-2"
-          >
-            <Upload className="h-4 w-4" />
-            Upload
-          </Button>
-        </label>
       </div>
+
 
       <div className="grid gap-4 md:grid-cols-2">
         {projects.length === 0 && (
