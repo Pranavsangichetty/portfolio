@@ -276,6 +276,9 @@ export default function Page() {
           </div>
 
           <nav className="hidden md:flex items-center gap-6 text-sm">
+            <button onClick={() => scrollToSection("skills")} className="hover:text-sky-400">
+              Skills
+            </button>
             <button onClick={() => scrollToSection("resumes")} className="hover:text-sky-400">
               Resumes
             </button>
@@ -314,6 +317,12 @@ export default function Page() {
         {mobileOpen && (
           <div className="md:hidden border-t border-slate-800 bg-slate-950/95 backdrop-blur">
             <div className="px-4 py-3 flex flex-col gap-2 text-sm">
+              <button
+                className="text-left py-1 hover:text-sky-400"
+                onClick={() => scrollToSection("skills")}
+              >
+                Skills
+              </button>
               <button
                 className="text-left py-1 hover:text-sky-400"
                 onClick={() => scrollToSection("resumes")}
@@ -360,7 +369,7 @@ export default function Page() {
         <div className={`${sectionClasses} flex flex-col lg:flex-row items-center gap-10 lg:gap-16`}>
           <div className="flex-1 space-y-6">
             <Badge className="bg-sky-500/10 border-sky-500/40 text-sky-300 px-3 py-1 rounded-full">
-              Data Science · Machine Learning · LLM 
+              Data Science · Machine Learning · LLM · Analytics
             </Badge>
 
             <div className="space-y-2">
@@ -368,14 +377,16 @@ export default function Page() {
                 Pranav Sangichetty
               </h1>
               <p className="text-lg sm:text-xl text-slate-300">
-                Aspiring Data Scientist & LLM Engineer
+                Aspiring Data Scientist & LLM Enthusiast
               </p>
             </div>
 
             <p className="max-w-xl text-slate-300 leading-relaxed text-sm sm:text-base">
-              I build data-driven solutions across analytics, machine learning and AI. From
-              dashboards and ETL workflows to predictive models and LLM-powered tools, I focus on
-              clean data, clear insights and practical impact.
+              I build and ship data-driven products across analytics, machine learning and AI. 
+              My work spans ETL pipelines, analytics systems, predictive modeling and LLM-powered applications, 
+              with a strong focus on building scalable, reliable and production-ready solutions. 
+              I enjoy taking ideas from raw data to deployed systems by combining experimentation, 
+              engineering discipline and automation to deliver real-world impact.
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
@@ -439,6 +450,90 @@ export default function Page() {
             </div>
           </div>
         </div>
+      </section>
+
+            {/* SKILLS (Tabs like Projects) */}
+      <section id="skills" className={sectionClasses}>
+        <div className="mb-6">
+          <h2 className="text-2xl font-semibold text-slate-50">Skills & Tools</h2>
+          <p className="text-sm text-slate-400 mt-1">
+            Core technical skills and the tools I use to build data & AI solutions.
+          </p>
+        </div>
+
+        <Tabs defaultValue="technical" className="space-y-4">
+          <TabsList className="bg-slate-900/80 border border-slate-800">
+            <TabsTrigger
+              value="technical"
+              className="data-[state=active]:bg-sky-600"
+            >
+              Technical Skills
+            </TabsTrigger>
+            <TabsTrigger
+              value="tools"
+              className="data-[state=active]:bg-sky-600"
+            >
+              Tools &amp; Software
+            </TabsTrigger>
+          </TabsList>
+
+          {/* Technical Skills tab */}
+          <TabsContent value="technical">
+            <Card className="bg-slate-900/80 border-slate-800">
+              <CardHeader>
+                <CardTitle className="text-base text-slate-50">
+                  Technical Skills
+                </CardTitle>
+                <CardDescription className="text-xs text-slate-400">
+                  Languages, libraries and core data / ML capabilities.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm text-slate-200">
+                  <span className="bg-slate-950 rounded-md px-2 py-1">Python</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">SQL</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">Pandas</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">NumPy</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">EDA</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">Feature Engineering</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">Supervised ML</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">Model Evaluation</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">LLMs / RAG</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">ETL Pipelines</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">Data Visualization</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">NLP</span>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+
+          {/* Tools & Software tab */}
+          <TabsContent value="tools">
+            <Card className="bg-slate-900/80 border-slate-800">
+              <CardHeader>
+                <CardTitle className="text-base text-slate-50">
+                  Tools &amp; Software
+                </CardTitle>
+                <CardDescription className="text-xs text-slate-400">
+                  Platforms and tooling I use in projects and internships.
+                </CardDescription>
+              </CardHeader>
+              <CardContent>
+                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm text-slate-200">
+                  <span className="bg-slate-950 rounded-md px-2 py-1">VS Code</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">Git &amp; GitHub</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">Jupyter / Colab</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">Power BI</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">Excel</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">MySQL</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">REST APIs</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">Docker</span>
+                  <span className="bg-slate-950 rounded-md px-2 py-1">Vercel</span>
+                </div>
+              </CardContent>
+            </Card>
+          </TabsContent>
+        </Tabs>
       </section>
 
       {/* INTERNSHIPS & TRAINING */}
