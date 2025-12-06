@@ -49,19 +49,19 @@ const initialResumes: Resume[] = [
     id: 1,
     title: "DS and DA Resume",
     type: "DS&DA",
-    url: "/resumes/Pranav_Sangichetty_DS_and_DA.pdf",
+    url: "/resumes/DS_and_DA_PRANAV_SANGICHETTY.pdf",
   },
   {
     id: 2,
     title: "AI and ML Resume",
     type: "AI&ML",
-    url: "/resumes/Pranav_Sangichetty_AI_and_ML.pdf",
+    url: "/resumes/AI_and_LLM_PRANAV_SANGICHETTY.pdf",
   },
   {
     id: 3,
     title: "ML and DL Resume",
     type: "ML&DL",
-    url: "/resumes/Pranav_Sangichetty_ML_and_DL.pdf",
+    url: "/resumes/ML_and_DL_PRANAV_SANGICHETTY.pdf",
   },
 ];
 
@@ -93,37 +93,51 @@ const initialProjects: Record<string, Project[]> = {
     },
     {
       id: 4,
-      title: "AI-Powered Text Intelligence System",
+      title: "SQL-Based Natural Language Assistant",
       description:
-        "LLM-powered app for natural language to SQL and risk text classification for business use-cases.",
-      link: "https://github.com/Pranavsangichetty/AI-Powered-Text-Intelligence-System-using-LLMs",
+        "Tool that converts natural language questions into SQL queries using AI.",
+      link: "https://github.com/Pranavsangichetty/SQL-Based-Natural-Assistant",
     },
     {
       id: 5,
-      title: "SQL Natural Language Assistant",
+      title: "AI-Image Analytics",
       description:
-        "Tool that converts natural language queries into SQL statements and executes them on a database.",
-      link: "https://github.com/Pranavsangichetty/SQL-Based-Natural-Assistant",
+        "A system that analyzes and understands images using AI models.",
+      link: "https://github.com/Pranavsangichetty/AI-Image-Analytics",
     },
+    {
+      id: 6,
+      title: "AI-Financial Planner System ",
+      description:
+        "An AI tool that gives users personalized financial guidance.",
+      link:"https://github.com/Pranavsangichetty/Financial-Analysis"
+    }
   ],
 
   "machine-learning": [
     {
-      id: 6,
+      id: 7,
       title: "Lead Scoring Model",
       description:
         "Logistic regression model to score leads and prioritize high-intent customers for sales teams.",
       link: "https://github.com/Pranavsangichetty/Lead-Scoring-Model-with-Logistic-Regression",
     },
     {
-      id: 7,
+      id: 8,
+      title: "AI-Powered Text Intelligence System",
+      description:
+        "LLM-powered app for natural language to SQL and risk text classification for business use-cases.",
+      link: "https://github.com/Pranavsangichetty/AI-Powered-Text-Intelligence-System-using-LLMs",
+    },
+    {
+      id: 9,
       title: "End-to-End ML Pipeline",
       description:
         "Complete ML workflow from data cleaning and EDA to model training, tuning, and evaluation.",
       link: "https://github.com/Pranavsangichetty/End-to-End-ML-Project-Classification-and-Regression",
     },
     {
-      id: 8,
+      id: 10,
       title: "Advanced Malicious Application Detection",
       description:
         "Machine learning–based malicious application detector with feature engineering and evaluation.",
@@ -133,21 +147,21 @@ const initialProjects: Record<string, Project[]> = {
 
   "data-analytics": [
     {
-      id: 9,
+      id: 11,
       title: "Superstore Sales Analytics",
       description:
         "Data analytics project with KPI design and dashboarding to analyze sales and profit performance.",
       link: "https://github.com/Pranavsangichetty/Superstore-Sales-Analytics-Using-MySQL-Power-BI",
     },
     {
-      id: 10,
+      id: 12,
       title: "Customer Churn Prediction Analytics",
       description:
         "Churn-focused analysis and modeling to understand drivers of churn and segment risky customers.",
       link: "https://github.com/Pranavsangichetty/Customer-Churn-Prediction",
     },
     {
-      id: 11,
+      id: 13,
       title: "Netflix Exploratory Data Analysis",
       description:
         "EDA on Netflix titles to explore content trends by genre, country, and ratings.",
@@ -298,7 +312,7 @@ export default function Page() {
               variant="outline"
               size="sm"
               className="hidden sm:inline-flex border-sky-500/50 text-sky-400 hover:bg-sky-500/10"
-              onClick={() => window.open("/resumes/View Resume.pdf", "_blank")}
+              onClick={() => window.open("/resumes/AI_and_LLM_PRANAV_SANGICHETTY.pdf", "_blank")}
             >
               <FileText className="h-4 w-4 mr-1.5" />
               View Resume
@@ -351,7 +365,7 @@ export default function Page() {
                 variant="outline"
                 size="sm"
                 className="mt-2 border-sky-500/50 text-sky-400 hover:bg-sky-500/10"
-                onClick={() => window.open("/resumes/View Resume.pdf", "_blank")}
+                onClick={() => window.open("/resumes/AI_and_LLM_PRANAV_SANGICHETTY.pdf", "_blank")}
               >
                 <FileText className="h-4 w-4 mr-1.5" />
                 View Resume
@@ -596,7 +610,7 @@ export default function Page() {
                 size="sm"
                 variant="outline"
                 className="mt-4 border-slate-600 text-black-100 hover:bg-slate-800"
-                onClick={() => window.open("/certificates/naresh_it_genai.pdf", "_blank")}
+                onClick={() => window.open("/internship and training/Nareshit.pdf", "_blank")}
               >
                 View Certificate
               </Button>
@@ -638,58 +652,17 @@ export default function Page() {
                   Click &quot;Open&quot; to view this resume in a new tab.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="flex items-center justify-between gap-2 pt-0 pb-4">
-                <div className="flex gap-2">
-                  <Button
-                    size="sm"
-                    variant="outline"
-                    className="rounded-md border-slate-600 bg-slate-900 text-slate-100 hover:bg-slate-800"
-                    onClick={() => {
-                      if (resume.url) window.open(resume.url, "_blank");
-                    }}
-                  >
-                    <ExternalLink className="h-3 w-3 mr-1.5" />
-                    Open
-                  </Button>
-
-                  <Dialog
-                    open={!!editingResume && editingResume.id === resume.id}
-                    onOpenChange={(open) => {
-                      if (!open) setEditingResume(null);
-                    }}
-                  >
-                    <DialogTrigger asChild>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        className="rounded-md border-slate-600 bg-slate-900 text-slate-100 hover:bg-slate-800"
-                        onClick={() => setEditingResume(resume)}
-                      >
-                        Update
-                      </Button>
-                    </DialogTrigger>
-                    <DialogContent className="bg-slate-950 border-slate-800">
-                      <DialogHeader>
-                        <DialogTitle>Update Resume</DialogTitle>
-                      </DialogHeader>
-                      {editingResume && editingResume.id === resume.id && (
-                        <ResumeForm
-                          resume={editingResume}
-                          onSave={handleResumeSave}
-                          onCancel={() => setEditingResume(null)}
-                        />
-                      )}
-                    </DialogContent>
-                  </Dialog>
-                </div>
-
+              <CardContent className="flex items-center justify-start gap-2 pt-0 pb-4">
                 <Button
-                  size="icon"
-                  variant="ghost"
-                  className="text-slate-500 hover:text-red-400 hover:bg-red-950/30"
-                  onClick={() => handleResumeDelete(resume.id)}
+                  size="sm"
+                  variant="outline"
+                  className="rounded-md border-slate-600 bg-slate-900 text-slate-100 hover:bg-slate-800"
+                  onClick={() => {
+                    if (resume.url) window.open(resume.url, "_blank");
+                  }}
                 >
-                  <X className="h-4 w-4" />
+                <ExternalLink className="h-3 w-3 mr-1.5" />
+                Open
                 </Button>
               </CardContent>
             </Card>
