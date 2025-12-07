@@ -466,7 +466,7 @@ export default function Page() {
         </div>
       </section>
 
-            {/* SKILLS (Tabs like Projects) */}
+      {/* SKILLS (Tabs like Projects) */}
       <section id="skills" className={sectionClasses}>
         <div className="mb-6">
           <h2 className="text-2xl font-semibold text-slate-50">Skills & Tools</h2>
@@ -479,13 +479,13 @@ export default function Page() {
           <TabsList className="bg-slate-900/80 border border-slate-800">
             <TabsTrigger
               value="technical"
-              className="data-[state=active]:bg-sky-600"
+              className="text-slate-100 data-[state=active]:bg-sky-600 data-[state=active]:text-white"
             >
               Technical Skills
             </TabsTrigger>
             <TabsTrigger
               value="tools"
-              className="data-[state=active]:bg-sky-600"
+              className="text-slate-100 data-[state=active]:bg-sky-600 data-[state=active]:text-white"
             >
               Tools &amp; Software
             </TabsTrigger>
@@ -684,16 +684,16 @@ export default function Page() {
 
         <Tabs defaultValue="data-science" className="space-y-4">
           <TabsList className="bg-slate-900/80 border border-slate-800">
-            <TabsTrigger value="data-science" className="data-[state=active]:bg-sky-600">
+            <TabsTrigger value="data-science" className="text-slate-100 data-[state=active]:bg-sky-600 data-[state=active]:text-white">
               Data Science
             </TabsTrigger>
-            <TabsTrigger value="ai-llms" className="data-[state=active]:bg-sky-600">
+            <TabsTrigger value="ai-llms" className="text-slate-100 data-[state=active]:bg-sky-600 data-[state=active]:text-white">
               AI &amp; LLMs
             </TabsTrigger>
-            <TabsTrigger value="machine-learning" className="data-[state=active]:bg-sky-600">
+            <TabsTrigger value="machine-learning" className="text-slate-100 data-[state=active]:bg-sky-600 data-[state=active]:text-white">
               Machine Learning
             </TabsTrigger>
-            <TabsTrigger value="data-analytics" className="data-[state=active]:bg-sky-600">
+            <TabsTrigger value="data-analytics" className="text-slate-100 data-[state=active]:bg-sky-600 data-[state=active]:text-white">
               Data Analytics
             </TabsTrigger>
           </TabsList>
