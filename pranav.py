@@ -1,6 +1,4 @@
 // App.tsx
-"use client";
-
 import * as React from "react";
 import {
   Mail,
@@ -23,6 +21,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
+import { Toaster } from "@/components/ui/toaster";
+import { useToast } from "@/components/ui/use-toast";
 
 type Resume = {
   id: number;
@@ -47,21 +47,21 @@ type Certificate = {
 const initialResumes: Resume[] = [
   {
     id: 1,
-    title: "DS and DA Resume",
-    type: "DS&DA",
-    url: "/resumes/DS_and_DA_PRANAV_SANGICHETTY.pdf",
+    title: "Data Science Resume",
+    type: "DS",
+    url: "/resumes/data-science-resume.pdf",
   },
   {
     id: 2,
-    title: "AI and ML Resume",
-    type: "AI&ML",
-    url: "/resumes/AI_and_LLM_PRANAV_SANGICHETTY.pdf",
+    title: "Data Analytics Resume",
+    type: "DA",
+    url: "/resumes/data-analytics-resume.pdf",
   },
   {
     id: 3,
-    title: "ML and DL Resume",
-    type: "ML&DL",
-    url: "/resumes/ML_and_DL_PRANAV_SANGICHETTY.pdf",
+    title: "General Tech Resume",
+    type: "General",
+    url: "/resumes/general-tech-resume.pdf",
   },
 ];
 
@@ -69,154 +69,41 @@ const initialProjects: Record<string, Project[]> = {
   "data-science": [
     {
       id: 1,
-      title: "House Price Prediction",
-      description:
-        "Built regression models to predict house prices using cleaned housing data and feature engineering.",
-      link: "https://github.com/Pranavsangichetty/House-Price-Prediction-System",
-    },
-    {
-      id: 2,
-      title: "Revenue Forecasting Performance",
-      description:
-        "Revenue forecasting pipeline built with SQL data modeling, Python ML, and Power BI analytics.",
-      link: "https://github.com/Pranavsangichetty/Revenue-Forecasting-Performance-Analytics-Retail-E-commerce",
-    },
-    {
-      id: 3,
-      title: "Movie Recommendation System",
-      description:
-        "Content-based movie recommendation system using genre similarity, TF-IDF, and cosine similarity in Python.",
-      link: "https://github.com/Pranavsangichetty/Movie-Recommendation-System",
-    },
-    {
-      id: 4,
-      title: "Ticket Reservation DBMS",
-      description:
-        "Database design and implementation for a ticket reservation system with core CRUD operations.",
-      link: "https://github.com/Pranavsangichetty/Ticket-Reservation-Database-System",
+      title: "Customer Churn Prediction",
+      description: "Predict churn using supervised learning and feature engineering.",
+      link: "#",
     },
   ],
-
   "ai-llms": [
     {
-      id: 5,
-      title: "Medical Document Assistant (LLM)",
-      description:
-        "LLM-based assistant that helps extract insights and answer questions from medical documents.",
-      link: "https://github.com/Pranavsangichetty/Medical-Document-Q-and-A-AI-Agent-Using-RAG-LangGraph-ChromaDB",
+      id: 2,
+      title: "LLM-Powered Chatbot",
+      description: "Domain-specific assistant for answering business queries.",
+      link: "#",
     },
-    {
-      id: 6,
-      title: "SQL-Based Natural Language Assistant",
-      description:
-        "Tool that converts natural language questions into SQL queries using AI.",
-      link: "https://github.com/Pranavsangichetty/SQL-Based-Natural-Assistant",
-    },
-    {
-      id: 7,
-      title: "AI-Image Analytics",
-      description:
-        "A system that analyzes and understands images using AI models.",
-      link: "https://github.com/Pranavsangichetty/AI-Image-Analytics",
-    },
-    {
-      id: 8,
-      title: "AI-Financial Planner System ",
-      description:
-        "An AI tool that gives users personalized financial guidance.",
-      link:"https://github.com/Pranavsangichetty/Financial-Analysis"
-    }
   ],
-
   "machine-learning": [
     {
-      id: 9,
+      id: 3,
       title: "Lead Scoring Model",
-      description:
-        "Logistic regression model to score leads and prioritize high-intent customers for sales teams.",
-      link: "https://github.com/Pranavsangichetty/Lead-Scoring-Model-with-Logistic-Regression",
-    },
-    {
-      id: 10,
-      title: "AI-Powered Text Intelligence System",
-      description:
-        "LLM-powered app for natural language to SQL and risk text classification for business use-cases.",
-      link: "https://github.com/Pranavsangichetty/AI-Powered-Text-Intelligence-System-using-LLMs",
-    },
-    {
-      id: 11,
-      title: "End-to-End ML Pipeline",
-      description:
-        "Complete ML workflow from data cleaning and EDA to model training, tuning, and evaluation.",
-      link: "https://github.com/Pranavsangichetty/End-to-End-ML-Project-Classification-and-Regression",
-    },
-    {
-      id: 12,
-      title: "Advanced Malicious Application Detection",
-      description:
-        "Machine learning–based malicious application detector with feature engineering and evaluation.",
-      link: "https://github.com/Pranavsangichetty/Advanced-Malicious-Application-Detection-using-Deep-Learning",
+      description: "Logistic regression model to rank and prioritize sales leads.",
+      link: "#",
     },
   ],
-
   "data-analytics": [
     {
-      id: 13,
-      title: "Superstore Sales Analytics",
-      description:
-        "Data analytics project with KPI design and dashboarding to analyze sales and profit performance.",
-      link: "https://github.com/Pranavsangichetty/Superstore-Sales-Analytics-Using-MySQL-Power-BI",
+      id: 4,
+      title: "Sales Performance Dashboard",
+      description: "Interactive dashboard for tracking KPIs across regions.",
+      link: "#",
     },
-    {
-      id: 14,
-      title: "Customer Churn Prediction Analytics",
-      description:
-        "Churn-focused analysis and modeling to understand drivers of churn and segment risky customers.",
-      link: "https://github.com/Pranavsangichetty/Customer-Churn-Prediction",
-    },
-    {
-      id: 15,
-      title: "Netflix Exploratory Data Analysis",
-      description:
-        "EDA on Netflix titles to explore content trends by genre, country, and ratings.",
-      link: "https://github.com/Pranavsangichetty/Netflix-Eda",
-    },
-    {
-      id: 16,
-      title: "Weather Data Analysis",
-      description: 
-        "Time-series weather analysis with regression-based temperature forecasting in Python.",
-      link: "https://github.com/Pranavsangichetty/Weather-Data-Analysis",
-    }
   ],
 };
 
-const initialCertificates: Certificate[] = [
-  {
-    id: 1,
-    name: "TATA GenAI Powered Data Analytics",
-    url: "/certificates/tata_genai.pdf",
-  },
-  {
-    id: 2,
-    name: "Deloitte Data Analytics Job Simulation",
-    url: "/certificates/delo_DA.pdf",
-  },
-  {
-    id: 3,
-    name: "YBI Data Science & Machine Learning Internship",
-    url: "/certificates/ybi_foundation.pdf",
-  },
-  {
-    id: 4,
-    name: "Coursera HTML, CSS, and JavaScript for Web Developer",
-    url: "/certificates/Coursera html.pdf"
-  }
-];
-
 const sectionClasses = "max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16";
 
-export default function Page() {
+export default function App() {
+  const { toast } = useToast();
   const [mobileOpen, setMobileOpen] = React.useState(false);
 
   const [resumes, setResumes] = React.useState<Resume[]>(initialResumes);
@@ -225,8 +112,7 @@ export default function Page() {
   const [projectsByCategory, setProjectsByCategory] =
     React.useState<Record<string, Project[]>>(initialProjects);
 
-  const [certificates, setCertificates] =
-    React.useState<Certificate[]>(initialCertificates);
+  const [certificates, setCertificates] = React.useState<Certificate[]>([]);
 
   const [contactForm, setContactForm] = React.useState({
     name: "",
@@ -240,12 +126,14 @@ export default function Page() {
   };
 
   const handleContactSubmit = (e: React.FormEvent) => {
-   e.preventDefault();
-   // Simple mock: show browser alert instead of toast
-   window.alert("Message sent. Your message has been recorded (mock).");
-   setContactForm({ name: "", email: "", message: "" });
+    e.preventDefault();
+    // Mock submit
+    toast({
+      title: "Message sent",
+      description: "Your message has been recorded (mock). I’ll follow up via email.",
+    });
+    setContactForm({ name: "", email: "", message: "" });
   };
-
 
   const handleResumeSave = (resume: Resume) => {
     setResumes((prev) => {
@@ -295,8 +183,12 @@ export default function Page() {
     setCertificates((prev) => [...prev, ...newCerts]);
   };
 
+  const dsResume = resumes.find((r) => r.type === "DS");
+  const daResume = resumes.find((r) => r.type === "DA");
+
   return (
     <div className="min-h-screen bg-slate-950 text-slate-100">
+      <Toaster />
       {/* HEADER */}
       <header className="sticky top-0 z-50 border-b border-slate-800 bg-slate-950/80 backdrop-blur">
         <div className="max-w-6xl mx-auto flex items-center justify-between px-4 sm:px-6 lg:px-8 h-16">
@@ -311,9 +203,6 @@ export default function Page() {
           </div>
 
           <nav className="hidden md:flex items-center gap-6 text-sm">
-            <button onClick={() => scrollToSection("skills")} className="hover:text-sky-400">
-              Skills
-            </button>
             <button onClick={() => scrollToSection("resumes")} className="hover:text-sky-400">
               Resumes
             </button>
@@ -333,7 +222,11 @@ export default function Page() {
               variant="outline"
               size="sm"
               className="hidden sm:inline-flex border-sky-500/50 text-sky-400 hover:bg-sky-500/10"
-              onClick={() => window.open("/resumes/AI_and_LLM_PRANAV_SANGICHETTY.pdf", "_blank")}
+              onClick={() => {
+                // Open both DS & DA resumes if they exist
+                if (dsResume?.url) window.open(dsResume.url, "_blank");
+                if (daResume?.url) window.open(daResume.url, "_blank");
+              }}
             >
               <FileText className="h-4 w-4 mr-1.5" />
               View Resume
@@ -352,12 +245,6 @@ export default function Page() {
         {mobileOpen && (
           <div className="md:hidden border-t border-slate-800 bg-slate-950/95 backdrop-blur">
             <div className="px-4 py-3 flex flex-col gap-2 text-sm">
-              <button
-                className="text-left py-1 hover:text-sky-400"
-                onClick={() => scrollToSection("skills")}
-              >
-                Skills
-              </button>
               <button
                 className="text-left py-1 hover:text-sky-400"
                 onClick={() => scrollToSection("resumes")}
@@ -386,7 +273,10 @@ export default function Page() {
                 variant="outline"
                 size="sm"
                 className="mt-2 border-sky-500/50 text-sky-400 hover:bg-sky-500/10"
-                onClick={() => window.open("/resumes/AI_and_LLM_PRANAV_SANGICHETTY.pdf", "_blank")}
+                onClick={() => {
+                  if (dsResume?.url) window.open(dsResume.url, "_blank");
+                  if (daResume?.url) window.open(daResume.url, "_blank");
+                }}
               >
                 <FileText className="h-4 w-4 mr-1.5" />
                 View Resume
@@ -404,7 +294,7 @@ export default function Page() {
         <div className={`${sectionClasses} flex flex-col lg:flex-row items-center gap-10 lg:gap-16`}>
           <div className="flex-1 space-y-6">
             <Badge className="bg-sky-500/10 border-sky-500/40 text-sky-300 px-3 py-1 rounded-full">
-              Data Science · Machine Learning · LLM · Analytics
+              Data Science · Machine Learning · Analytics
             </Badge>
 
             <div className="space-y-2">
@@ -412,22 +302,20 @@ export default function Page() {
                 Pranav Sangichetty
               </h1>
               <p className="text-lg sm:text-xl text-slate-300">
-                Aspiring Data Scientist & LLM Enthusiast
+                Aspiring Data Scientist & Machine Learning Engineer
               </p>
             </div>
 
             <p className="max-w-xl text-slate-300 leading-relaxed text-sm sm:text-base">
-              I build and ship data-driven products across analytics, machine learning and AI. 
-              My work spans ETL pipelines, analytics systems, predictive modeling and LLM-powered applications, 
-              with a strong focus on building scalable, reliable and production-ready solutions. 
-              I enjoy taking ideas from raw data to deployed systems by combining experimentation, 
-              engineering discipline and automation to deliver real-world impact.
+              I build data-driven solutions across analytics, machine learning, and AI. From
+              dashboards and ETL workflows to predictive models and LLM-powered tools, I focus on
+              clean data, clear insights, and practical impact.
             </p>
 
             <div className="flex flex-wrap items-center gap-3">
               <Button
                 size="lg"
-                className="rounded-xl border-slate-600 bg-slate-900 text-slate-100 hover:bg-slate-800"
+                className="rounded-xl bg-sky-600 hover:bg-sky-500 text-white"
                 onClick={() => scrollToSection("projects")}
               >
                 View Projects
@@ -436,7 +324,7 @@ export default function Page() {
               <Button
                 size="lg"
                 variant="outline"
-                className="rounded-xl border-slate-600 bg-slate-900 text-slate-100 hover:bg-slate-800"
+                className="rounded-xl border-slate-600 text-slate-100 hover:bg-slate-800"
                 onClick={() => scrollToSection("contact")}
               >
                 Get In Touch
@@ -445,14 +333,14 @@ export default function Page() {
 
             <div className="flex flex-wrap items-center gap-4 pt-2 text-sm text-slate-300">
               <a
-                href="mailto:sangichettypranav@gmail.com"
+                href="mailto:your.email@example.com"
                 className="inline-flex items-center gap-2 hover:text-sky-400"
               >
                 <Mail className="h-4 w-4" />
-                sangichettypranav@gmail.com
+                your.email@example.com
               </a>
               <a
-                href="https://github.com/Pranavsangichetty"
+                href="https://github.com/your-github"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 hover:text-sky-400"
@@ -461,7 +349,7 @@ export default function Page() {
                 GitHub
               </a>
               <a
-                href="https://www.linkedin.com/in/pranav-sangichetty"
+                href="https://www.linkedin.com/in/your-linkedin"
                 target="_blank"
                 rel="noreferrer"
                 className="inline-flex items-center gap-2 hover:text-sky-400"
@@ -475,197 +363,16 @@ export default function Page() {
           <div className="flex-1 flex justify-center lg:justify-end">
             <div className="relative">
               <div className="absolute -inset-1 rounded-3xl bg-gradient-to-br from-sky-500/40 via-indigo-500/40 to-purple-500/40 blur-xl opacity-70" />
-              <div className="relative h-48 w-48 sm:h-56 sm:w-56 rounded-3xl bg-slate-900/80 border border-sky-500/40 flex items-center justify-center shadow-xl overflow-hidden">
-                <img
-                  src="/folio.jpg"        // 👈 must match the file name you put in public/
-                  alt="Pranav Sangichetty"
-                  className="h-full w-full object-cover"
-                />
+              <div className="relative h-48 w-48 sm:h-56 sm:w-56 rounded-3xl bg-slate-900/80 border border-sky-500/40 flex flex-col items-center justify-center shadow-xl">
+                <div className="h-20 w-20 rounded-2xl bg-gradient-to-br from-sky-500 to-indigo-500 flex items-center justify-center text-3xl font-semibold text-slate-50">
+                  P
+                </div>
+                <p className="mt-3 text-sm text-slate-300 text-center px-4">
+                  Placeholder professional photo. Replace with your real headshot.
+                </p>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* SKILLS (Tabs like Projects) */}
-      <section id="skills" className={sectionClasses}>
-        <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-slate-50">Skills & Tools</h2>
-          <p className="text-sm text-slate-400 mt-1">
-            Core technical skills and the tools I use to build data & AI solutions.
-          </p>
-        </div>
-
-        <Tabs defaultValue="technical" className="space-y-4">
-          <TabsList className="bg-slate-900/80 border border-slate-800">
-            <TabsTrigger
-              value="technical"
-              className="text-slate-100 data-[state=active]:bg-sky-600 data-[state=active]:text-white"
-            >
-              Technical Skills
-            </TabsTrigger>
-            <TabsTrigger
-              value="tools"
-              className="text-slate-100 data-[state=active]:bg-sky-600 data-[state=active]:text-white"
-            >
-              Tools &amp; Software
-            </TabsTrigger>
-          </TabsList>
-
-          {/* Technical Skills tab */}
-          <TabsContent value="technical">
-            <Card className="bg-slate-900/80 border-slate-800">
-              <CardHeader>
-                <CardTitle className="text-base text-slate-50">
-                  Technical Skills
-                </CardTitle>
-                <CardDescription className="text-xs text-slate-400">
-                  Languages, libraries and core data / ML capabilities.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm text-slate-200">
-                  <span className="bg-slate-950 rounded-md px-2 py-1">Python</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">SQL</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">Pandas</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">NumPy</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">EDA</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">Feature Engineering</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">Supervised ML</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">Model Evaluation</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">LLMs / RAG</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">ETL Pipelines</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">Data Visualization</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">NLP</span>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-
-          {/* Tools & Software tab */}
-          <TabsContent value="tools">
-            <Card className="bg-slate-900/80 border-slate-800">
-              <CardHeader>
-                <CardTitle className="text-base text-slate-50">
-                  Tools &amp; Software
-                </CardTitle>
-                <CardDescription className="text-xs text-slate-400">
-                  Platforms and tooling I use in projects and internships.
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 text-sm text-slate-200">
-                  <span className="bg-slate-950 rounded-md px-2 py-1">VS Code</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">Git &amp; GitHub</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">Jupyter / Colab</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">Power BI</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">Excel</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">MySQL</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">REST APIs</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">Docker</span>
-                  <span className="bg-slate-950 rounded-md px-2 py-1">Vercel</span>
-                </div>
-              </CardContent>
-            </Card>
-          </TabsContent>
-        </Tabs>
-      </section>
-
-      {/* INTERNSHIPS & TRAINING */}
-      <section id="internships" className={sectionClasses}>
-        <div className="mb-6">
-          <h2 className="text-2xl font-semibold text-slate-50">Internships & Training</h2>
-          <p className="text-sm text-slate-400 mt-1">
-            Professional experience and technical upskilling.
-          </p>
-        </div>
-
-        <div className="grid gap-4 md:grid-cols-2">
-          
-          {/* Codec Technologies AI Internship */}
-          <Card className="bg-slate-900/70 border-slate-800">
-            <CardHeader>
-              <CardTitle className="text-white">
-               Artificial Intelligence Intern
-              </CardTitle>
-              <CardDescription className="text-slate-400">
-               Codec Technologies Pvt. Ltd.
-              </CardDescription>
-            </CardHeader>
-
-            <CardContent>
-              <p className="text-sm text-slate-300">
-                Completed a 1-month AI internship focused on data cleaning, exploratory data analysis (EDA),
-                basic machine learning workflows, and insight generation from structured datasets.
-              </p>
-
-             <Button
-               size="sm"
-               variant="outline"
-               className="mt-4 border-slate-600 text-black-100 hover:bg-slate-800"
-               onClick={() => window.open("/internship and training/Codec Technologies Internship Certificate.pdf", "_blank")}
-              >
-              View Certificate
-             </Button>
-            </CardContent>
-          </Card>
-
-          {/* Cognify Data Science Internship */}
-          <Card className="bg-slate-900/70 border-slate-800">
-            <CardHeader>
-              <CardTitle className="text-white">
-                Data Science Intern
-              </CardTitle>
-              <CardDescription className="text-slate-400">
-                Cognifyz Technologies
-              </CardDescription>
-            </CardHeader>
-
-            <CardContent>
-              <p className="text-sm text-slate-300">
-                Worked on real-world data science tasks including Exploratory Data Analysis (EDA),
-                predictive modeling, and performance evaluation using structured datasets.
-              </p>
-
-              <Button
-                size="sm"
-                variant="outline"
-                className="mt-4 border-slate-600 text-black-100 hover:bg-slate-800"
-                onClick={() => window.open("/internship and training/Sangichetty Pranav Kumar DS.pdf", "_blank")}
-              >
-                View Certificate
-              </Button>
-            </CardContent>
-          </Card>
-
-          {/* Naresh IT Training */}
-          <Card className="bg-slate-900/70 border-slate-800">
-            <CardHeader>
-              <CardTitle className="text-white">
-                Full Stack Data Science with GenAI & Agentic AI
-              </CardTitle>
-              <CardDescription className="text-slate-400">
-                Naresh IT
-              </CardDescription>
-            </CardHeader>
-
-            <CardContent>
-              <p className="text-sm text-slate-300">
-                Completed professional training covering Python, Machine Learning, Deep Learning,
-                NLP, Generative AI and Agentic AI architectures with hands-on project experience.
-              </p>
-
-              <Button
-                size="sm"
-                variant="outline"
-                className="mt-4 border-slate-600 text-black-100 hover:bg-slate-800"
-                onClick={() => window.open("/internship and training/Nareshit.pdf", "_blank")}
-              >
-                View Certificate
-              </Button>
-            </CardContent>
-          </Card>
-
         </div>
       </section>
 
@@ -678,7 +385,42 @@ export default function Page() {
               Manage your core resumes and add more versions for different roles.
             </p>
           </div>
-          {/* Right side is now empty – that's fine */}
+
+          <Dialog
+            open={!!editingResume && editingResume.id === 0}
+            onOpenChange={(open) => {
+              if (!open) setEditingResume(null);
+            }}
+          >
+            <DialogTrigger asChild>
+              <Button
+                size="sm"
+                className="rounded-lg bg-sky-600 hover:bg-sky-500 flex items-center gap-2"
+                onClick={() =>
+                  setEditingResume({
+                    id: 0,
+                    title: "",
+                    type: "",
+                    url: "",
+                  })
+                }
+              >
+                Add more
+              </Button>
+            </DialogTrigger>
+            <DialogContent className="bg-slate-950 border-slate-800">
+              <DialogHeader>
+                <DialogTitle>Add New Resume</DialogTitle>
+              </DialogHeader>
+              {editingResume && editingResume.id === 0 && (
+                <ResumeForm
+                  resume={editingResume}
+                  onSave={handleResumeSave}
+                  onCancel={() => setEditingResume(null)}
+                />
+              )}
+            </DialogContent>
+          </Dialog>
         </div>
 
         <div className="grid gap-4 md:grid-cols-3">
@@ -689,7 +431,7 @@ export default function Page() {
             >
               <CardHeader>
                 <CardTitle className="flex items-center justify-between gap-3 text-base">
-                  <span className="truncate text-white">{resume.title}</span>
+                  <span className="truncate">{resume.title}</span>
                   <Badge
                     variant="outline"
                     className="border-sky-500/60 text-sky-300 uppercase text-[10px]"
@@ -701,17 +443,58 @@ export default function Page() {
                   Click &quot;Open&quot; to view this resume in a new tab.
                 </CardDescription>
               </CardHeader>
-              <CardContent className="flex items-center justify-start gap-2 pt-0 pb-4">
+              <CardContent className="flex items-center justify-between gap-2 pt-0 pb-4">
+                <div className="flex gap-2">
+                  <Button
+                    size="sm"
+                    variant="outline"
+                    className="rounded-md border-slate-600 text-slate-100 hover:bg-slate-800"
+                    onClick={() => {
+                      if (resume.url) window.open(resume.url, "_blank");
+                    }}
+                  >
+                    <ExternalLink className="h-3 w-3 mr-1.5" />
+                    Open
+                  </Button>
+
+                  <Dialog
+                    open={!!editingResume && editingResume.id === resume.id}
+                    onOpenChange={(open) => {
+                      if (!open) setEditingResume(null);
+                    }}
+                  >
+                    <DialogTrigger asChild>
+                      <Button
+                        size="sm"
+                        variant="outline"
+                        className="rounded-md border-slate-600 text-slate-100 hover:bg-slate-800"
+                        onClick={() => setEditingResume(resume)}
+                      >
+                        Update
+                      </Button>
+                    </DialogTrigger>
+                    <DialogContent className="bg-slate-950 border-slate-800">
+                      <DialogHeader>
+                        <DialogTitle>Update Resume</DialogTitle>
+                      </DialogHeader>
+                      {editingResume && editingResume.id === resume.id && (
+                        <ResumeForm
+                          resume={editingResume}
+                          onSave={handleResumeSave}
+                          onCancel={() => setEditingResume(null)}
+                        />
+                      )}
+                    </DialogContent>
+                  </Dialog>
+                </div>
+
                 <Button
-                  size="sm"
-                  variant="outline"
-                  className="rounded-md border-slate-600 bg-slate-900 text-slate-100 hover:bg-slate-800"
-                  onClick={() => {
-                    if (resume.url) window.open(resume.url, "_blank");
-                  }}
+                  size="icon"
+                  variant="ghost"
+                  className="text-slate-500 hover:text-red-400 hover:bg-red-950/30"
+                  onClick={() => handleResumeDelete(resume.id)}
                 >
-                <ExternalLink className="h-3 w-3 mr-1.5" />
-                Open
+                  <X className="h-4 w-4" />
                 </Button>
               </CardContent>
             </Card>
@@ -725,24 +508,23 @@ export default function Page() {
           <div>
             <h2 className="text-2xl font-semibold text-slate-50">Featured Projects</h2>
             <p className="text-sm text-slate-400 mt-1">
-              Explore work across Data Science, AI & LLMs, Machine Learning and Data Analytics.
+              Explore work across Data Science, AI & LLMs, Machine Learning, and Data Analytics.
             </p>
           </div>
-          {/* Upload removed */}
         </div>
 
         <Tabs defaultValue="data-science" className="space-y-4">
           <TabsList className="bg-slate-900/80 border border-slate-800">
-            <TabsTrigger value="data-science" className="text-slate-100 data-[state=active]:bg-sky-600 data-[state=active]:text-white">
+            <TabsTrigger value="data-science" className="data-[state=active]:bg-sky-600">
               Data Science
             </TabsTrigger>
-            <TabsTrigger value="ai-llms" className="text-slate-100 data-[state=active]:bg-sky-600 data-[state=active]:text-white">
+            <TabsTrigger value="ai-llms" className="data-[state=active]:bg-sky-600">
               AI &amp; LLMs
             </TabsTrigger>
-            <TabsTrigger value="machine-learning" className="text-slate-100 data-[state=active]:bg-sky-600 data-[state=active]:text-white">
+            <TabsTrigger value="machine-learning" className="data-[state=active]:bg-sky-600">
               Machine Learning
             </TabsTrigger>
-            <TabsTrigger value="data-analytics" className="text-slate-100 data-[state=active]:bg-sky-600 data-[state=active]:text-white">
+            <TabsTrigger value="data-analytics" className="data-[state=active]:bg-sky-600">
               Data Analytics
             </TabsTrigger>
           </TabsList>
@@ -750,28 +532,28 @@ export default function Page() {
           {/* Helper for per-tab content */}
           <ProjectsTab
             title="Data Science Projects"
-            description="Notebooks, pipelines and end-to-end DS workflows."
+            description="Notebooks, pipelines, and end-to-end DS workflows."
             categoryKey="data-science"
             projects={projectsByCategory["data-science"] || []}
             onUpload={handleProjectUpload}
           />
           <ProjectsTab
             title="AI and LLMs Projects"
-            description="LLM apps, prompt engineering and retrieval pipelines."
+            description="LLM apps, prompt engineering, and retrieval pipelines."
             categoryKey="ai-llms"
             projects={projectsByCategory["ai-llms"] || []}
             onUpload={handleProjectUpload}
           />
           <ProjectsTab
             title="Machine Learning Projects"
-            description="Classical ML models, MLOps experiments and model evaluation."
+            description="Classical ML models, MLOps experiments, and model evaluation."
             categoryKey="machine-learning"
             projects={projectsByCategory["machine-learning"] || []}
             onUpload={handleProjectUpload}
           />
           <ProjectsTab
             title="Data Analytics Projects"
-            description="Dashboards, reports and analytics case studies."
+            description="Dashboards, reports, and analytics case studies."
             categoryKey="data-analytics"
             projects={projectsByCategory["data-analytics"] || []}
             onUpload={handleProjectUpload}
@@ -783,49 +565,64 @@ export default function Page() {
       <section id="certificates" className={sectionClasses}>
         <div className="flex items-center justify-between mb-6">
           <div>
-           <h2 className="text-2xl font-semibold text-slate-50">Certificates</h2>
-           <p className="text-sm text-slate-400 mt-1">
-             Upload and manage your certifications with a professional layout.
-           </p>
+            <h2 className="text-2xl font-semibold text-slate-50">Certificates</h2>
+            <p className="text-sm text-slate-400 mt-1">
+              Upload and manage your certifications with a professional layout.
+            </p>
           </div>
-          {/* Add button removed */}
+
+          <label className="inline-flex items-center gap-2 cursor-pointer">
+            <input
+              type="file"
+              multiple
+              className="hidden"
+              onChange={(e) => handleCertificateUpload(e.target.files)}
+            />
+            <Button
+              size="sm"
+              className="rounded-lg bg-sky-600 hover:bg-sky-500 flex items-center gap-2"
+            >
+              <Upload className="h-4 w-4" />
+              Add
+            </Button>
+          </label>
         </div>
 
         <div className="grid gap-4 md:grid-cols-2">
           {certificates.length === 0 && (
-          <Card className="bg-slate-900/70 border-slate-800">
-            <CardHeader>
-              <CardTitle className="flex items-center gap-2 text-base">
-                <Award className="h-4 w-4 text-sky-400" />
-                No certificates uploaded yet
-              </CardTitle>
-              <CardDescription className="text-sm text-slate-400">
-                Upload your certificates to view them here. Each file will get a &quot;View
-                Certificate&quot; button.
-              </CardDescription>
-            </CardHeader>
-          </Card>
-        )}
+            <Card className="bg-slate-900/70 border-slate-800">
+              <CardHeader>
+                <CardTitle className="flex items-center gap-2 text-base">
+                  <Award className="h-4 w-4 text-sky-400" />
+                  No certificates uploaded yet
+                </CardTitle>
+                <CardDescription className="text-sm text-slate-400">
+                  Upload your certificates to view them here. Each file will get a &quot;View
+                  Certificate&quot; button.
+                </CardDescription>
+              </CardHeader>
+            </Card>
+          )}
 
-         {certificates.map((cert) => (
-           <Card key={cert.id} className="bg-slate-900/70 border-slate-800">
-             <CardHeader>
-               <CardTitle className="flex items-center justify-between text-base">
-                 <div className="flex items-center gap-2">
-                   <Award className="h-4 w-4 text-sky-400" />
-                   <span className="truncate text-white">{cert.name}</span>
-                 </div>
-               </CardTitle>
-             </CardHeader>
-             <CardContent className="flex justify-between items-center pt-0 pb-4">
-               <p className="text-xs text-slate-400">
-                 Click below to open in a new tab. (Local preview link)
-               </p>
-               <Button
-                 size="sm"
-                 variant="outline"
-                 className="rounded-md border-slate-600 bg-slate-900 text-slate-100 hover:bg-slate-800"
-                 onClick={() => window.open(cert.url, "_blank")}
+          {certificates.map((cert) => (
+            <Card key={cert.id} className="bg-slate-900/70 border-slate-800">
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between text-base">
+                  <div className="flex items-center gap-2">
+                    <Award className="h-4 w-4 text-sky-400" />
+                    <span className="truncate">{cert.name}</span>
+                  </div>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="flex justify-between items-center pt-0 pb-4">
+                <p className="text-xs text-slate-400">
+                  Click below to open in a new tab. (Local preview link)
+                </p>
+                <Button
+                  size="sm"
+                  variant="outline"
+                  className="rounded-md border-slate-600 text-slate-100 hover:bg-slate-800"
+                  onClick={() => window.open(cert.url, "_blank")}
                 >
                   View Certificate
                 </Button>
@@ -835,14 +632,13 @@ export default function Page() {
         </div>
       </section>
 
-
       {/* CONTACT */}
       <section id="contact" className={sectionClasses}>
         <div className="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)] items-start">
           <div>
             <h2 className="text-2xl font-semibold text-slate-50 mb-2">Contact</h2>
             <p className="text-sm text-slate-400 mb-6">
-              Let&apos;s connect for roles, collaborations or project discussions.
+              Let&apos;s connect for roles, collaborations, or project discussions.
             </p>
 
             <div className="grid gap-4 sm:grid-cols-3 mb-6">
@@ -853,10 +649,10 @@ export default function Page() {
                   </div>
                   <p className="text-xs font-medium text-slate-300">Email</p>
                   <a
-                    href="mailto:sangichettypranav@gmail.com"
+                    href="mailto:your.email@example.com"
                     className="text-xs text-sky-400 truncate hover:underline"
                   >
-                    sangichettypranav@gmail.com
+                    your.email@example.com
                   </a>
                 </CardContent>
               </Card>
@@ -868,12 +664,12 @@ export default function Page() {
                   </div>
                   <p className="text-xs font-medium text-slate-300">LinkedIn</p>
                   <a
-                    href="https://www.linkedin.com/in/pranav-sangichetty"
+                    href="https://www.linkedin.com/in/your-linkedin"
                     target="_blank"
                     rel="noreferrer"
                     className="text-xs text-sky-400 truncate hover:underline"
                   >
-                    https://www.linkedin.com/in/pranav-sangichetty
+                    linkedin.com/in/your-linkedin
                   </a>
                 </CardContent>
               </Card>
@@ -885,12 +681,12 @@ export default function Page() {
                   </div>
                   <p className="text-xs font-medium text-slate-300">GitHub</p>
                   <a
-                    href="https://github.com/Pranavsangichetty"
+                    href="https://github.com/your-github"
                     target="_blank"
                     rel="noreferrer"
                     className="text-xs text-sky-400 truncate hover:underline"
                   >
-                    https://github.com/Pranavsangichetty
+                    github.com/your-github
                   </a>
                 </CardContent>
               </Card>
@@ -898,11 +694,11 @@ export default function Page() {
 
             <Card className="bg-slate-900/80 border-slate-800">
               <CardHeader>
-                <CardTitle className="text-base flex items-center gap-2 text-white">
+                <CardTitle className="text-base flex items-center gap-2">
                   <Send className="h-4 w-4 text-sky-400" />
                   Contact Form
                 </CardTitle>
-                <CardDescription className="text-xs text-slate-300">
+                <CardDescription className="text-xs text-slate-400">
                   Form submission is currently mocked and will show a toast notification.
                 </CardDescription>
               </CardHeader>
@@ -961,7 +757,7 @@ export default function Page() {
             <Card className="bg-slate-900/80 border-slate-800 h-full">
               <CardContent className="h-full flex flex-col justify-center gap-4">
                 <p className="text-sm text-slate-300">
-                  I&apos;m open to internships, entry-level roles and hands-on projects in:
+                  I&apos;m open to internships, entry-level roles, and hands-on projects in:
                 </p>
                 <ul className="text-xs text-slate-300 space-y-2">
                   <li>• Data Science & Machine Learning</li>
@@ -969,7 +765,7 @@ export default function Page() {
                   <li>• AI / LLM-based product development</li>
                 </ul>
                 <p className="text-xs text-slate-400">
-                  Share a brief context about your requirement, timeline and tech stack. I&apos;ll
+                  Share a brief context about your requirement, timeline, and tech stack. I&apos;ll
                   get back to you with next steps and availability.
                 </p>
               </CardContent>
@@ -990,7 +786,7 @@ export default function Page() {
               Back to top
             </button>
             <a
-              href="https://github.com/Pranavsangichetty"
+              href="https://github.com/your-github"
               target="_blank"
               rel="noreferrer"
               className="hover:text-sky-400"
@@ -998,7 +794,7 @@ export default function Page() {
               GitHub
             </a>
             <a
-              href="https://www.linkedin.com/in/pranav-sangichetty"
+              href="https://www.linkedin.com/in/your-linkedin"
               target="_blank"
               rel="noreferrer"
               className="hover:text-sky-400"
@@ -1101,8 +897,24 @@ function ProjectsTab({
           <h3 className="text-lg font-medium text-slate-50">{title}</h3>
           <p className="text-xs text-slate-400 mt-1">{description}</p>
         </div>
-      </div>
 
+        <label className="inline-flex items-center gap-2 cursor-pointer">
+          <input
+            type="file"
+            multiple
+            className="hidden"
+            onChange={(e) => onUpload(categoryKey, e.target.files)}
+          />
+          <Button
+            size="sm"
+            variant="outline"
+            className="rounded-lg border-slate-600 text-slate-100 hover:bg-slate-800 flex items-center gap-2"
+          >
+            <Upload className="h-4 w-4" />
+            Upload
+          </Button>
+        </label>
+      </div>
 
       <div className="grid gap-4 md:grid-cols-2">
         {projects.length === 0 && (
@@ -1135,7 +947,7 @@ function ProjectsTab({
                   <Button
                     size="sm"
                     variant="outline"
-                    className="rounded-md border-slate-600 bg-slate-900 text-slate-100 hover:bg-slate-800"
+                    className="rounded-md border-slate-600 text-slate-100 hover:bg-slate-800"
                     onClick={() => window.open(project.link, "_blank")}
                   >
                     <ExternalLink className="h-3 w-3 mr-1.5" />
